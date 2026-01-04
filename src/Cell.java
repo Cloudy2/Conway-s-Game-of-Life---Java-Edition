@@ -15,8 +15,8 @@ public class Cell extends JLabel {
    }
 
    public int iterate(Cell[][] cellArray) {
-      int liveNeighbors = this.getLiveNeighbors(cellArray);
-      boolean shouldLive = this.checkRules(liveNeighbors);
+      int liveNeighbors = getLiveNeighbors(cellArray);
+      boolean shouldLive = checkRules(liveNeighbors);
       if (shouldLive) {
          this.setNextToLive();
       } else {
@@ -77,15 +77,15 @@ public class Cell extends JLabel {
       int sum = 0;
       int arrayLength = arr.length;
       
-      this.yPos %= arrayLength;
-      this.xPos %= arrayLength;
+      yPos %= arrayLength;
+      xPos %= arrayLength;
 
-      for(int k = this.yPos - 1; k <= this.yPos + 1; ++k) {
+      for(int k = yPos - 1; k <= yPos + 1; ++k) {
          int curKIndex = (k % arrayLength + arrayLength) % arrayLength;
 
-         for(int u = this.xPos - 1; u <= this.xPos + 1; ++u) {
+         for(int u = xPos - 1; u <= xPos + 1; ++u) {
             int curUIndex = (u % arrayLength + arrayLength) % arrayLength;
-            if ((curKIndex != this.yPos || curUIndex != this.xPos) && arr[curKIndex][curUIndex].alive) {
+            if ((curKIndex != yPos || curUIndex != xPos) && arr[curKIndex][curUIndex].alive) {
                ++sum;
             }
          }

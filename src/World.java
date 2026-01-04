@@ -36,12 +36,12 @@ public class World extends JPanel implements MouseListener {
    }
 
    public Cell[][] getCellArray() {
-      return this.cellArray;
+      return cellArray;
    }
 
    public void mapImageToWorld(BufferedImage image) {
-      for(int y = 0; y < image.getWidth(); ++y) {
-         for(int x = 0; x < image.getHeight(); ++x) {
+      for(int y = 0; y < image.getWidth(); y++) {
+         for(int x = 0; x < image.getHeight(); x++) {
             int pixel = image.getRGB(y, x);
             if (pixel == -16777216) {
                System.out.println("HEAR YE! PIXEL IS BLACK!");
@@ -70,58 +70,31 @@ public class World extends JPanel implements MouseListener {
    }
 
    public void iterateAll() {
-      Cell[][] var4;
-      int var3 = (var4 = this.cellArray).length;
-
-      for(int var2 = 0; var2 < var3; ++var2) {
-         Cell[] arr = var4[var2];
-         Cell[] var8 = arr;
-         int var7 = arr.length;
-
-         for(int var6 = 0; var6 < var7; ++var6) {
-            Cell cell = var8[var6];
-            cell.iterate(this.cellArray);
+      for (Cell[] arr : cellArray) {
+         for (Cell c : arr) {
+            c.iterate(cellArray);
          }
       }
-
    }
 
    private void updateAllStatus() {
-      Cell[][] var4;
-      int var3 = (var4 = this.cellArray).length;
-
-      for(int var2 = 0; var2 < var3; ++var2) {
-         Cell[] arr = var4[var2];
-         Cell[] var8 = arr;
-         int var7 = arr.length;
-
-         for(int var6 = 0; var6 < var7; ++var6) {
-            Cell cell = var8[var6];
-            if (cell.getNextStatus()) {
-               cell.setAlive();
+      for (Cell[] arr : cellArray) {
+         for (Cell c : arr) {
+            if (c.getNextStatus()) {
+               c.setAlive();
             } else {
-               cell.setDead();
+               c.setDead();
             }
          }
       }
-
    }
 
    public void clearWorld() {
-      Cell[][] var4;
-      int var3 = (var4 = this.cellArray).length;
-
-      for(int var2 = 0; var2 < var3; ++var2) {
-         Cell[] arr = var4[var2];
-         Cell[] var8 = arr;
-         int var7 = arr.length;
-
-         for(int var6 = 0; var6 < var7; ++var6) {
-            Cell cell = var8[var6];
-            cell.setDead();
+      for (Cell[] arr : cellArray) {
+         for (Cell c : arr) {
+            c.setDead();
          }
       }
-
    }
 
    public void playOrPause() {
@@ -131,15 +104,14 @@ public class World extends JPanel implements MouseListener {
          this.timer.start();
       }
 
-      this.timerActive = !this.timerActive;
+      timerActive = !timerActive;
    }
 
    public void mouseClicked(MouseEvent e) {
       if (e.getSource() instanceof Cell) {
-         Cell cell = (Cell)e.getSource();
+         Cell cell = (Cell) e.getSource();
          cell.swapStatus();
       }
-
    }
 
    public void mousePressed(MouseEvent e) {
@@ -152,8 +124,8 @@ public class World extends JPanel implements MouseListener {
 
    public void mouseEntered(MouseEvent e) {
       Cell cell;
-      if (e.getSource() instanceof Cell && !this.timerActive) {
-         cell = (Cell)e.getSource();
+      if (e.getSource() instanceof Cell && !timerActive) {
+         cell = (Cell) e.getSource();
          cell.setBackground(Color.gray);
       }
 
@@ -165,8 +137,8 @@ public class World extends JPanel implements MouseListener {
    }
 
    public void mouseExited(MouseEvent e) {
-      if (e.getSource() instanceof Cell && !this.timerActive) {
-         Cell cell = (Cell)e.getSource();
+      if (e.getSource() instanceof Cell && !timerActive) {
+         Cell cell = (Cell) e.getSource();
          if (cell.getStatus()) {
             cell.setBackground(Color.white);
          } else {

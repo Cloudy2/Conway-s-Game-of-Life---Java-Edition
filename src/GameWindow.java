@@ -1,11 +1,10 @@
 // Source code is decompiled from a .class file using FernFlower decompiler (from Intellij IDEA).
 import java.awt.BorderLayout;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
+import java.awt.event.*;
+import javax.swing.*;
 
 public class GameWindow extends JFrame implements KeyListener {
+
    private ImageIcon logo = new ImageIcon("resources/lifeIcon2.png");
    private World world;
    private ControlPanel controlPanel;
@@ -13,16 +12,22 @@ public class GameWindow extends JFrame implements KeyListener {
    public GameWindow() {
       this.setIconImage(this.logo.getImage());
       this.setTitle("Game of Life - Size: " + App.SIDE_LENGTH + "x" + App.SIDE_LENGTH);
-      this.setDefaultCloseOperation(3);
+      this.setDefaultCloseOperation(EXIT_ON_CLOSE);
       this.setLayout(new BorderLayout());
+
       this.addKeyListener(this);
+
       this.setFocusable(true);
+
       this.world = new World();
-      this.controlPanel = new ControlPanel(this.world);
+      this.controlPanel = new ControlPanel(world);
+
       this.add(this.controlPanel, "North");
       this.add(this.world, "South");
+
       this.pack();
       this.setResizable(false);
+
       this.setVisible(true);
    }
 
