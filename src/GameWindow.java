@@ -9,7 +9,7 @@ public class GameWindow extends JFrame implements KeyListener {
    private ControlPanel controlPanel;
 
    public GameWindow() {
-      setIconImage(this.logo.getImage());
+      setIconImage(logo.getImage());
       setTitle("Game of Life - Size: " + App.SIDE_LENGTH + "x" + App.SIDE_LENGTH);
       setDefaultCloseOperation(EXIT_ON_CLOSE);
       setLayout(new BorderLayout());
