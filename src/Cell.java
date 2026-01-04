@@ -2,6 +2,7 @@ import java.awt.Color;
 import javax.swing.JLabel;
 
 public class Cell extends JLabel {
+   
    private boolean nextToLive;
    private boolean alive = false;
    private int xPos;
@@ -10,6 +11,7 @@ public class Cell extends JLabel {
    public Cell(int xPos, int yPos) {
       this.setBackground(Color.black);
       this.setOpaque(true);
+
       this.xPos = xPos;
       this.yPos = yPos;
    }
@@ -17,6 +19,7 @@ public class Cell extends JLabel {
    public int iterate(Cell[][] cellArray) {
       int liveNeighbors = getLiveNeighbors(cellArray);
       boolean shouldLive = checkRules(liveNeighbors);
+
       if (shouldLive) {
          this.setNextToLive();
       } else {
@@ -80,14 +83,16 @@ public class Cell extends JLabel {
       yPos %= arrayLength;
       xPos %= arrayLength;
 
-      for(int k = yPos - 1; k <= yPos + 1; ++k) {
+      for(int k = yPos - 1; k <= yPos + 1; k++) {
          int curKIndex = (k % arrayLength + arrayLength) % arrayLength;
 
-         for(int u = xPos - 1; u <= xPos + 1; ++u) {
+         for(int u = xPos - 1; u <= xPos + 1; u++) {
             int curUIndex = (u % arrayLength + arrayLength) % arrayLength;
+            
             if ((curKIndex != yPos || curUIndex != xPos) && arr[curKIndex][curUIndex].alive) {
-               ++sum;
+               sum++;
             }
+
          }
       }
 
