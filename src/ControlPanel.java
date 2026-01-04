@@ -7,7 +7,8 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class ControlPanel extends JPanel implements MouseListener, ActionListener {
-   private FlowLayout flowLayout;
+   // I can't remember why I have this flowlayout...
+   // private FlowLayout flowLayout;
    private World world;
 
    private int SIDE_LENGTH;
@@ -19,7 +20,7 @@ public class ControlPanel extends JPanel implements MouseListener, ActionListene
    public ControlPanel(World world) {
       SIDE_LENGTH = App.SIDE_LENGTH;
       buttons = new ArrayList<NamedButton>();
-      flowLayout = new FlowLayout();
+      // flowLayout = new FlowLayout();
 
       this.world = world;
 
@@ -62,7 +63,7 @@ public class ControlPanel extends JPanel implements MouseListener, ActionListene
    }
 
    public void updatePausePlay() {
-      NamedButton pauseButton = (NamedButton)this.buttons.get(0);
+      NamedButton pauseButton = buttons.get(0);
       if (this.world.timerActive) {
          pauseButton.setText("Pause");
       } else {
@@ -71,8 +72,7 @@ public class ControlPanel extends JPanel implements MouseListener, ActionListene
 
    }
 
-   public void actionPerformed(ActionEvent e) {
-   }
+   public void actionPerformed(ActionEvent e) { }
 
    public void mouseClicked(MouseEvent e) {
       if (e.getSource() instanceof NamedButton) {
@@ -108,17 +108,13 @@ public class ControlPanel extends JPanel implements MouseListener, ActionListene
 
    }
 
-   public void mousePressed(MouseEvent e) {
-   }
+   public void mousePressed(MouseEvent e) { }
 
-   public void mouseReleased(MouseEvent e) {
-   }
+   public void mouseReleased(MouseEvent e) { }
 
-   public void mouseEntered(MouseEvent e) {
-   }
+   public void mouseEntered(MouseEvent e) { }
 
-   public void mouseExited(MouseEvent e) {
-   }
+   public void mouseExited(MouseEvent e) { }
 
    private class NamedButton extends JButton {
       

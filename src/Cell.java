@@ -2,7 +2,7 @@ import java.awt.Color;
 import javax.swing.JLabel;
 
 public class Cell extends JLabel {
-   
+
    private boolean nextToLive;
    private boolean alive = false;
    private int xPos;
@@ -35,7 +35,6 @@ public class Cell extends JLabel {
       } else {
          this.setAlive();
       }
-
    }
 
    public void setAlive() {

@@ -9,25 +9,25 @@ public class GameWindow extends JFrame implements KeyListener {
    private ControlPanel controlPanel;
 
    public GameWindow() {
-      this.setIconImage(this.logo.getImage());
-      this.setTitle("Game of Life - Size: " + App.SIDE_LENGTH + "x" + App.SIDE_LENGTH);
-      this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-      this.setLayout(new BorderLayout());
+      setIconImage(this.logo.getImage());
+      setTitle("Game of Life - Size: " + App.SIDE_LENGTH + "x" + App.SIDE_LENGTH);
+      setDefaultCloseOperation(EXIT_ON_CLOSE);
+      setLayout(new BorderLayout());
 
-      this.addKeyListener(this);
+      addKeyListener(this);
 
-      this.setFocusable(true);
+      setFocusable(true);
 
-      this.world = new World();
-      this.controlPanel = new ControlPanel(world);
+      world = new World();
+      controlPanel = new ControlPanel(world);
 
-      this.add(this.controlPanel, "North");
-      this.add(this.world, "South");
+      add(controlPanel, "North");
+      add(world, "South");
 
-      this.pack();
-      this.setResizable(false);
+      pack();
+      setResizable(false);
 
-      this.setVisible(true);
+      setVisible(true);
    }
 
    public World getWorld() {
